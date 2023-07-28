@@ -5,7 +5,7 @@ revision=3
 bootstrap=yes
 build_style=meta
 short_desc="Evolution Linux base system meta package"
-maintainer="Tracker-Friendly <jliwin98@pm.me>"
+maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 license="Public Domain"
 homepage="https://evolution-linux.github.io"
 

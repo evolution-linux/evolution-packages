@@ -3,7 +3,7 @@ pkgname=evolution-artwork
 version=20221013
 revision=3
 short_desc="Evolution Linux artwork"
-maintainer="Tracker-Friendly <jliwin98@pm.me>"
+maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 license="custom:Public Domain" #no vlicense check
 homepage="http://evolution-linux.github.io"
 

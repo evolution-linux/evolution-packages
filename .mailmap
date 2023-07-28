@@ -1,6 +1,7 @@
 # git mailmap (see git-shortlog(1))
 # format: New Name <new@address> Old Name <old@address>
 
+Tracker-Friendly <jliwin98@danwin1210.de> Tracker-Friendly <jliwin98@pm.me>
 Andrea Brancaleoni <abc@pompel.me> Andrea Brancaleoni <andrea.brancaleoni@cleafy.com>
 Andrea Brancaleoni <abc@pompel.me> Andrea Brancaleoni <miwaxe@gmail.com>
 Andrea Brancaleoni <abc@pompel.me> Andrea Brancaleoni <virus@gmx.us>
