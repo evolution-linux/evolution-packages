@@ -9,11 +9,11 @@ license="Public Domain"
 homepage="https://www.voidlinux.org/"
 
 depends="
- base-files ncurses coreutils findutils diffutils
- dash bash grep gzip file sed gawk less util-linux which tar man-pages
- mdocml>=1.13.3 shadow e2fsprogs btrfs-progs xfsprogs f2fs-tools dosfstools kbd
- procps-ng tzdata pciutils iana-etc eudev runit-void openssh dhcpcd
- iproute2 iputils iw xbps nvi sudo traceroute kmod removed-packages"
+ base-files ncurses coreutils busybox-core
+ bash file less util-linux man-pages
+ mdocml>=1.13.3 shadow e2fsprogs btrfs-progs xfsprogs dosfstools kbd
+ procps-ng iana-etc eudev runit-void openssh dhcpcd
+ iproute2 iputils xbps kmod removed-packages"
 
 case "$XBPS_TARGET_MACHINE" in
 	*-musl) depends+=" musl";;

@@ -1,20 +1,22 @@
 # Template file for 'base-system'
 pkgname=base-system
 version=0.114
-revision=1
+revision=3
+bootstrap=yes
 build_style=meta
-short_desc="Void Linux base system meta package"
-maintainer="Enno Boland <gottox@voidlinux.org>"
+short_desc="Evolution Linux base system meta package"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
 license="Public Domain"
-homepage="https://www.voidlinux.org"
+homepage="https://evolution-linux.github.io"
 
 depends="
- base-files>=0.77 ncurses coreutils findutils diffutils libgcc
- dash bash grep gzip file sed gawk less util-linux which tar man-pages
- mdocml>=1.13.3 shadow e2fsprogs btrfs-progs xfsprogs f2fs-tools dosfstools
- procps-ng tzdata pciutils usbutils iana-etc openssh dhcpcd
- kbd iproute2 iputils iw wpa_supplicant xbps nvi sudo wifi-firmware
- void-artwork traceroute ethtool kmod acpid eudev runit-void removed-packages"
+ base-files ncurses busybox-core libgcc
+ bash file util-linux man-pages
+ mdocml>=1.13.3 shadow e2fsprogs btrfs-progs xfsprogs dosfstools
+ procps-ng tzdata iana-etc openssh dhcpcd
+ kbd iproute2 iputils wpa_supplicant xbps wifi-firmware
+ ethtool kmod acpid eudev runit-void removed-packages
+ evolution-patches opendoas runitctl booster evolution-artwork"
 
 case "$XBPS_TARGET_MACHINE" in
 	*-musl) depends+=" musl";;

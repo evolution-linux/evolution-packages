@@ -1,0 +1,25 @@
+#!/bin/sh
+pkgname=greetd-gtkgreet
+version=0.7
+revision=0
+short_desc="GTKGreet for greetd (not my software)"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+homepage="https://git.sr.ht/~kennylevinsen/gtkgreet"
+license="GPL-3.0"
+makedepends="meson git pkg-config gtk+3-devel json-c-devel cmake ninja gettext scdoc"
+depends="greetd gtk+3 json-c"
+
+do_build() {
+    echo "Building..."
+    cd ${XBPS_BUILDDIR}
+    rm -rf gtkgreet
+    git clone https://github.com/kennylevinsen/gtkgreet
+    cd gtkgreet
+    meson build -Dlayershell=disabled
+    ninja -C build
+}
+
+do_install() {
+    echo "Installing..."
+    vbin ${XBPS_BUILDDIR}/gtkgreet/build/gtkgreet/gtkgreet
+}

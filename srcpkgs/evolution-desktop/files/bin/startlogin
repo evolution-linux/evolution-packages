@@ -1,0 +1,3 @@
+wf-background &
+loadspinner "Logging in..." 20 0 &
+gtkgreet &

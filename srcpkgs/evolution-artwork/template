@@ -1,0 +1,23 @@
+# Template file for 'evolution-artwork'
+pkgname=evolution-artwork
+version=20221013
+revision=3
+short_desc="Evolution Linux artwork"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+license="custom:Public Domain" #no vlicense check
+homepage="http://evolution-linux.github.io"
+
+do_install() {
+	vinstall ${FILESDIR}/splash.png 644 usr/share/evolution-artwork
+	vinstall ${FILESDIR}/oldsplash.png 644 usr/share/evolution-artwork
+	vinstall ${FILESDIR}/splashwhite.png 644 usr/share/evolution-artwork
+	vinstall ${FILESDIR}/evolution-logo.png 644 usr/share/evolution-artwork
+	vinstall ${FILESDIR}/evolution-transparent.png 644 usr/share/evolution-artwork
+	vinstall ${FILESDIR}/evolution-logo.svg 644 usr/share/evolution-artwork
+	for size in 16 22 32 48 64 128 256 512; do
+		vinstall ${FILESDIR}/icons/evolution-logo-${size}.png 644 usr/share/icons/hicolor/${size}x${size}/apps evolution-logo.png
+		vinstall ${FILESDIR}/icons/evolution-logo-notext-${size}.png 644 usr/share/icons/hicolor/${size}x${size}/apps evolution-logo-notext.png
+	done
+	vinstall ${FILESDIR}/icons/evolution-logo.svg 644 usr/share/icons/hicolor/scalable/apps
+	vinstall ${FILESDIR}/icons/evolution-logo-notext.svg 644 usr/share/icons/hicolor/scalable/apps
+}

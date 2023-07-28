@@ -1,0 +1,25 @@
+pkgname=evolution-patches
+version=1.0
+revision=5
+build_style=meta
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+short_desc="Simple patches that enable an usable OS out of the box"
+license="GPL-3.0"
+homepage="https://evolution-linux.github.io"
+makedepends="busybox-core opendoas"
+depends="busybox-core opendoas"
+
+do_install() {
+    #!/bin/bash
+
+    mkdir -p ${DESTDIR}/etc/sv/agetty-tty1
+    cp ${FILESDIR}/conf ${DESTDIR}/etc/sv/agetty-tty1/conf
+    mkdir -p ${DESTDIR}/usr/share/xbps.d
+    cp ${FILESDIR}/main.conf ${DESTDIR}/usr/share/xbps.d/*-0-evolution-main.conf
+    mkdir -p ${DESTDIR}/etc/
+    cp ${FILESDIR}/doas.conf ${DESTDIR}/etc/doas.conf    
+
+    ln -sf /bin/doas ${DESTDIR}/usr/bin/sudo
+
+    touch ${DESTDIR}/etc/shadow
+}

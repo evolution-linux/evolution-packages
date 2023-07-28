@@ -1,13 +1,13 @@
 # Template file for 'base-files'
 pkgname=base-files
 version=0.143
-revision=3
+revision=5
 bootstrap=yes
 depends="xbps-triggers"
-short_desc="Void Linux base system files"
-maintainer="Enno Boland <orphan@voidlinux.org>"
+short_desc="Evolution Linux base system files"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
 license="Public Domain"
-homepage="https://www.voidlinux.org"
+homepage="https://evolution-linux.github.io"
 conf_files="
 	/etc/inputrc
 	/etc/profile

@@ -1,0 +1,22 @@
+#!/bin/sh
+pkgname=runitctl
+version=1.0
+revision=5
+short_desc="A simple clone of systemctl for runit"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+homepage="https://tracker-friendly.github.io"
+license="GPL-3.0"
+makedepends="busybox-core"
+depends="busybox-core"
+
+do_build() {
+    echo "Building..."
+    # No build process required for this example
+}
+
+do_install() {
+    echo "Installing..."
+    mkdir -p ${DESTDIR}/usr/bin
+    cp ${FILESDIR}/runitctl ${DESTDIR}/usr/bin/runitctl
+    chmod +x ${DESTDIR}/usr/bin/runitctl
+}

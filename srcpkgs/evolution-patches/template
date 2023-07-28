@@ -1,0 +1,43 @@
+pkgname=evolution-patches
+version=1.0
+revision=5
+build_style=meta
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+short_desc="Simple patches that enable an usable OS out of the box"
+license="GPL-3.0"
+homepage="https://evolution-linux.github.io"
+makedepends="busybox-core opendoas"
+depends="busybox-core opendoas"
+replaces="grep which gzip tar diffutils coreutils findutils xz wget sed gawk"
+provides="awk-0_1"
+
+do_install() {
+    #!/bin/bash
+
+    # Get the list of commands from busybox
+
+    commands="[ [[ arch ascii base32 base64 basename brctl cat chgrp chmod chown chroot comm cp crc32 cttyhack cut date dc dd df dirname dnsdomainname du dumpkmap echo ed env expand expr factor false fatattr fbset fold fsync fuser getty groups head hexedit i2cdetect i2cdump i2cget i2cset i2ctransfer id ifconfig ifenslave install iostat ipaddr iplink ipneigh iproute iprule iptunnel killall killall5 link ln loadkmap ls lsof lsscsi lzcat md5sum mkdir mkfifo mknod mkstat mv nc netstat nice nl nohup nproc nslookup od partprobe paste patch pipe_progress powertop printenv printf pstree pwd readlink realpath rm rmdir seq setfattr sha1sum sha256sum sha3sum sha512sum shred shuf sleep sort split ssl_client stat strings stty sum svok sync tac tail tee telnet test time touch tr true truncate ts tty uevent uname unexpand uniq unlink unxz unzip uudecode uuencode wc wget whoami whois xxd xz xzcat yes sh find diff gunzip tar gzip sed less which mktemp grep xargs"
+    mkdir -p ${DESTDIR}/usr/bin/
+    # Loop through each command
+    for cmd in $commands; do
+	    echo $PWD
+            busybox ln -sf /bin/busybox ${DESTDIR}/usr/bin/$cmd
+            chmod +x ${DESTDIR}/usr/bin/$cmd
+	    ls -l ${DESTDIR}/usr/bin/$cmd
+    done
+
+    ls ${DESTDIR}
+    echo ${DESTDIR}
+    echo done
+
+    mkdir -p ${DESTDIR}/etc/sv/agetty-tty1
+    cp ${FILESDIR}/conf ${DESTDIR}/etc/sv/agetty-tty1/conf
+    mkdir -p ${DESTDIR}/usr/share/xbps.d
+    cp ${FILESDIR}/main.conf ${DESTDIR}/usr/share/xbps.d/*-0-evolution-main.conf
+    mkdir -p ${DESTDIR}/etc/
+    cp ${FILESDIR}/doas.conf ${DESTDIR}/etc/doas.conf    
+
+    ln -sf /bin/doas ${DESTDIR}/usr/bin/sudo
+
+    touch ${DESTDIR}/etc/shadow
+}

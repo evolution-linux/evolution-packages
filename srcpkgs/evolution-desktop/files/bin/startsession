@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Session stuff
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=wayfire
+export XDG_CURRENT_DESKTOP=wayfire
+
+# Wayland stuff
+export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+pidof wayfire &>/dev/null
+if [ "$?" = "0" ]; then
+  killall wayfire
+fi
+if [ "$1" = "" ]; then
+  dbus-run-session wayfire &>/dev/null
+else
+  dbus-run-session $* &>/dev/null
+fi
+

@@ -1,7 +1,7 @@
 ## The XBPS source packages collection
 
 This repository contains the XBPS source packages collection to build binary packages
-for the Void Linux distribution.
+for the Evolution Linux distribution.
 
 The included `xbps-src` script will fetch and compile the sources, and install its
 files into a `fake destdir` to generate XBPS binary packages that can be installed
@@ -30,7 +30,7 @@ See [Contributing](./CONTRIBUTING.md) for a general overview of how to contribut
 - [Keeping your masterdir uptodate](#updating-masterdir)
 - [Building 32bit packages on x86_64](#building-32bit)
 - [Building packages natively for the musl C library](#building-for-musl)
-- [Building void base-system from scratch](#building-base-system)
+- [Building evolution base-system from scratch](#building-base-system)
 
 ### Requirements
 
@@ -56,11 +56,11 @@ methods.
 <a name="quick-start"></a>
 ### Quick start
 
-Clone the `void-packages` git repository and install the bootstrap packages:
+Clone the `evolution-packages` git repository and install the bootstrap packages:
 
 ```
-$ git clone https://github.com/void-linux/void-packages.git
-$ cd void-packages
+$ git clone https://github.com/evolution-linux/evolution-packages.git
+$ cd evolution-packages
 $ ./xbps-src binary-bootstrap
 ```
 
@@ -128,12 +128,12 @@ executable must be `setgid`:
     # chmod 4750 xbps-uchroot
     # usermod -a -G <group> <user>
 
-> NOTE: by default in void you shouldn't do this manually, your user must be a member of
+> NOTE: by default in evolution you shouldn't do this manually, your user must be a member of
 the `xbuilder` group.
 
 To enable it:
 
-    $ cd void-packages
+    $ cd evolution-packages
     $ echo XBPS_CHROOT_CMD=uchroot >> etc/conf
 
 If for some reason it's erroring out as `ERROR clone (Operation not permitted)`, check that
@@ -163,7 +163,7 @@ or from your local repository.
 There is also the `bootstrap` command, which will build all necessary `bootstrap` packages from
 scratch. This is usually not recommended, since those packages are built using your host system's
 toolchain and are neither fully featured nor reproducible (your host system may influence the
-build) and thus should only be used as a stage 0 for bootstrapping new Void systems.
+build) and thus should only be used as a stage 0 for bootstrapping new Evolution systems.
 
 If you still choose to use `bootstrap`, use the resulting stage 0 container to rebuild all
 `bootstrap` packages again, then use `binary-bootstrap` (stage 1) and rebuild the `bootstrap`
@@ -203,7 +203,7 @@ and edit it accordingly to your needs.
 
 The following directory hierarchy is used with a default configuration file:
 
-         /void-packages
+         /evolution-packages
             |- common
             |- etc
             |- srcpkgs
@@ -221,7 +221,7 @@ The following directory hierarchy is used with a default configuration file:
             |  |- builddir -> ...
             |  |- destdir -> ...
             |  |- host -> bind mounted from <hostdir>
-            |  |- void-packages -> bind mounted from <void-packages>
+            |  |- evolution-packages -> bind mounted from <evolution-packages>
 
 
 The description of these directories is as follows:
@@ -241,7 +241,7 @@ The description of these directories is as follows:
 The simplest form of building package is accomplished by running the `pkg` target in `xbps-src`:
 
 ```
-$ cd void-packages
+$ cd evolution-packages
 $ ./xbps-src pkg <pkgname>
 ```
 
@@ -287,7 +287,7 @@ The build options can also be shown for binary packages via `xbps-query(1)`:
     $ xbps-query -R --property=build-options foo
 
 > NOTE: if you build a package with a custom option, and that package is available
-in an official void repository, an update will ignore those options. Put that package
+in an official void / evolution repository, an update will ignore those options. Put that package
 on `hold` mode via `xbps-pkgdb(1)`, i.e `xbps-pkgdb -m hold foo` to ignore updates
 with `xbps-install -u`. Once the package is on `hold`, the only way to update it
 is by declaring it explicitly: `xbps-install -u foo`.
@@ -345,7 +345,7 @@ Each time a binary package is created, a package signature must be created with 
 
 Packages are overwritten on every build to make getting package with changed build options easy.
 To make xbps-src skip build and preserve first package build with given version and revision,
-same as in official void repository, set `XBPS_PRESERVE_PKGS=yes` in `etc/conf` file.
+same as in official void / evolution repository, set `XBPS_PRESERVE_PKGS=yes` in `etc/conf` file.
 
 Reinstalling a package in your target `rootdir` can be easily done too:
 
@@ -375,7 +375,7 @@ Install distcc on the host (machine that executes xbps-src) as well.
 Unless you want to use the host as slave from other machines, there is no need
 to modify the configuration.
 
-On the host you can now enable distcc in the `void-packages/etc/conf` file:
+On the host you can now enable distcc in the `evolution-packages/etc/conf` file:
 
     XBPS_DISTCC=yes
     XBPS_DISTCC_HOSTS="localhost/2 --localslots_cpp=24 192.168.2.101/9 192.168.2.102/2"
@@ -395,7 +395,7 @@ In etc/conf you may optionally define a mirror or a list of mirrors to search fo
     $ echo 'XBPS_DISTFILES_MIRROR="ftp://192.168.100.5/gentoo/distfiles"' >> etc/conf
 
 If more than one mirror is to be searched, you can either specify multiple URLs separated
-with blanks, or add to the variable like this
+with blanks, or add to the variable like this. Remeber, offically, Evolution Linux uses 2 REPOS. This means not all packages are included.
 
     $ echo 'XBPS_DISTFILES_MIRROR+=" https://sources.voidlinux.org/"' >> etc/conf
 
@@ -439,15 +439,15 @@ To use xbps-src in your Linux distribution use the following instructions. Let's
 If `xbps-uunshare` does not work because of lack of `user_namespaces(7)` support,
 try other [chroot methods](#chroot-methods).
 
-Clone the `void-packages` git repository:
+Clone the `evolution-packages` git repository:
 
-    $ git clone https://github.com/void-linux/void-packages.git
+    $ git clone https://github.com/evolution-linux/evolution-packages.git
 
 and `xbps-src` should be fully functional; just start the `bootstrap` process, i.e:
 
     $ ./xbps-src binary-bootstrap
 
-The default masterdir is created in the current working directory, i.e `void-packages/masterdir`.
+The default masterdir is created in the current working directory, i.e `evolution-packages/masterdir`.
 
 <a name="remaking-masterdir"></a>
 ### Remaking the masterdir
@@ -490,7 +490,7 @@ Your new masterdir is now ready to build packages natively for the musl C librar
     $ ./xbps-src -m masterdir-x86_64-musl pkg ...
 
 <a name="building-base-system"></a>
-### Building void base-system from scratch
+### Building evolution base-system from scratch
 
 To rebuild all packages in `base-system` for your native architecture:
 

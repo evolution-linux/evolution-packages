@@ -1,0 +1,24 @@
+#!/bin/sh
+pkgname=gtkloadspinner
+version=1.0
+revision=0
+short_desc="Ridonculously simple spinner for GTK"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+homepage="https://github.com/Tracker-Friendly/GtkLoadSpinner"
+license="GPL-3.0"
+makedepends="make gcc git pkg-config gtk+3-devel"
+depends="gtk+3"
+
+do_build() {
+    echo "Building..."
+    cd ${XBPS_BUILDDIR}
+    rm -rf gtkgreet
+    git clone https://github.com/Tracker-Friendly/GtkLoadSpinner.git
+    cd GtkLoadSpinner
+    make
+}
+
+do_install() {
+    echo "Installing..."
+    vbin ${XBPS_BUILDDIR}/GtkLoadSpinner/loadspinner
+}

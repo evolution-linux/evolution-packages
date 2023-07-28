@@ -1,0 +1,26 @@
+case "$ACTION" in
+post)
+	useradd -r greeter
+	usermod -a -G video greeter
+	usermod -a -G netdev greeter
+	rm -rf /etc/greetd/config.toml
+	mv /etc/greetd/config.toml.2 /etc/greetd/config.toml
+	usermod -d /etc/greetd/greeter greeter
+	chown greeter /etc/greetd/greeter -R
+	cp -r /run/runit/supervise.agetty-tty1 /run/runit/supervise.greetd
+        cp -r /run/runit/supervise.agetty-tty1 /run/runit/supervise.polkitd
+        cp -r /run/runit/supervise.agetty-tty1 /run/runit/supervise.dbus
+	echo "chvt 5" >> /etc/rc.local
+	rm -rf /var/service/agetty-tty5
+	sed -i '/ctrl_interface_group=.*$/d' /etc/wpa_supplicant/wpa_supplicant.conf
+	if [ -d /etc/runit/runsvdir/default/wpa_supplicant ]; then
+	  :
+	else
+	  ln -s /etc/sv/wpa_supplicant /etc/runit/runsvdir/default/wpa_supplicant
+	fi
+	if [ -d /etc/runit/runsvdir/default/dhcpcd ]; then
+          :
+        else
+          ln -s /etc/sv/dhcpcd /etc/runit/runsvdir/default/dhcpcd
+        fi
+esac

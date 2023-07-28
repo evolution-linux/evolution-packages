@@ -1,0 +1,26 @@
+#!/bin/sh
+pkgname=evolution-theme-switcher
+version=1.0
+revision=1
+short_desc="Just a theme switcher for evolution-desktop"
+maintainer="Tracker-Friendly <jliwin98@pm.me>"
+homepage="https://github.com/Tracker-Friendly/Evolution-theme-switcher"
+license="GPL-3.0"
+makedepends="make gcc git pkg-config gtk+3-devel dconf psmisc"
+depends="gtk+3 dconf psmisc"
+
+do_build() {
+    echo "Building..."
+    cd ${XBPS_BUILDDIR}
+    rm -rf gtkgreet
+    git clone https://github.com/Tracker-Friendly/evolution-theme-switcher.git
+    cd evolution-theme-switcher
+    make
+}
+
+do_install() {
+    echo "Installing..."
+    vbin ${XBPS_BUILDDIR}/evolution-theme-switcher/themeswitcher
+    mkdir -p ${DESTDIR}/usr/share/applications
+    cp ${XBPS_BUILDDIR}/evolution-theme-switcher/evolution-theme-switcher.desktop ${DESTDIR}/usr/share/applications/
+}

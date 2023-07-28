@@ -3,7 +3,7 @@ pkgname=runit-void
 version=20230413
 revision=1
 build_style=gnu-makefile
-short_desc="Void Linux runit scripts"
+short_desc="Void / Evolution Linux runit scripts (partially patched by Tracker-Friendly)"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="CC0-1.0"
 homepage="https://github.com/void-linux/void-runit"
@@ -19,7 +19,6 @@ conf_files="
  /etc/rc.shutdown
  /etc/sv/agetty-console/conf
  /etc/sv/agetty-serial/conf
- /etc/sv/agetty-tty1/conf
  /etc/sv/agetty-hvc0/conf
  /etc/sv/agetty-hvsi0/conf"
 
@@ -40,6 +39,7 @@ post_install() {
 	rm -rf ${DESTDIR}/etc/runit/runsvdir/default
 	rm -rf ${DESTDIR}/etc/runit/runsvdir/single
 	ln -s runit-init ${DESTDIR}/usr/bin/init
+        rm -rfv ${DESTDIR}/etc/sv/agetty-tty1/conf
 }
 
 runit-void-apparmor_package() {
@@ -49,5 +49,6 @@ runit-void-apparmor_package() {
 	pkg_install() {
 		vmove etc/default/apparmor
 		vmove etc/runit/core-services/09-apparmor.sh
+        	rm -rfv ${DESTDIR}/etc/sv/agetty-tty1/conf
 	}
 }

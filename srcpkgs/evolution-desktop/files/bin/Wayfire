@@ -1,0 +1,21 @@
+if [[ -x ~/.config ]]; then
+  :
+else
+  mkdir ~/.config
+fi
+if [[ -x ~/.config/wayfire.ini ]]; then
+  :
+else
+  cp /usr/share/wayfire/wayfire.ini ~/.config/wayfire.ini
+fi
+if [[ -x ~/.config/wf-shell.ini ]]; then
+  :
+else
+  cp /usr/share/wayfire/wf-shell.ini ~/.config/wf-shell.ini
+fi
+if [[ -x ~/.config/dconf ]]; then
+  :
+else
+  cp -r /usr/share/wayfire/dconf ~/.config/
+fi
+bash /bin/startsession 
