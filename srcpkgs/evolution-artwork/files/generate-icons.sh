@@ -16,14 +16,14 @@ RESOLUTIONS="16 22 32 48 64 128 256 512"
 for res in $RESOLUTIONS; do
 	# at low resolutions, the text is too small to read, so the text is left out
 	if [ "$res" -lt 64 ]; then
-		rsvg-convert void-logo.svg --keep-aspect-ratio --width $res -i circlearcs -o ./icons/void-logo-$res.png
+		rsvg-convert evolution-logo.svg --keep-aspect-ratio --width $res -o ./icons/evolution-logo-$res.png
 	else
-		rsvg-convert void-logo.svg --keep-aspect-ratio --width $res -o ./icons/void-logo-$res.png
+		rsvg-convert evolution-logo.svg --keep-aspect-ratio --width $res -o ./icons/evolution-logo-$res.png
 	fi
-	rsvg-convert void-logo.svg --keep-aspect-ratio --width $res -i circlearcs -o ./icons/void-logo-notext-$res.png
+	rsvg-convert evolution-logo.svg --keep-aspect-ratio --width $res -o ./icons/evolution-logo-notext-$res.png
 done
 
 # scalable
-rsvg-convert void-logo.svg --format svg -o ./icons/void-logo.svg
-rsvg-convert void-logo.svg --format svg -i circlearcs -o ./icons/void-logo-notext.svg
+rsvg-convert evolution-logo.svg --format svg -o ./icons/evolution-logo.svg
+rsvg-convert evolution-logo.svg --format svg -o ./icons/evolution-logo-notext.svg
 

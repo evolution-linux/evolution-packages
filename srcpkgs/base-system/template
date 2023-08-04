@@ -1,13 +1,13 @@
 # Template file for 'base-system'
 pkgname=base-system
 version=0.114
-revision=3
+revision=4
 bootstrap=yes
 build_style=meta
 short_desc="Evolution Linux base system meta package"
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 license="Public Domain"
-homepage="https://evolution-linux.github.io"
+homepage="https://evolutionos.gitlab.io"
 
 depends="
  base-files ncurses busybox-core libgcc
@@ -16,7 +16,7 @@ depends="
  procps-ng tzdata iana-etc openssh dhcpcd
  kbd iproute2 iputils wpa_supplicant xbps wifi-firmware
  ethtool kmod acpid eudev runit-void removed-packages
- evolution-patches opendoas runitctl booster evolution-artwork"
+ evolution-patches opendoas booster evolution-artwork"
 
 case "$XBPS_TARGET_MACHINE" in
 	*-musl) depends+=" musl";;

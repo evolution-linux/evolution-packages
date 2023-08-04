@@ -1,11 +1,11 @@
 # Template file for 'evolution-artwork'
 pkgname=evolution-artwork
 version=20221013
-revision=3
+revision=4
 short_desc="Evolution Linux artwork"
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 license="custom:Public Domain" #no vlicense check
-homepage="http://evolution-linux.github.io"
+homepage="http://evolutionos.gitlab.io"
 
 do_install() {
 	vinstall ${FILESDIR}/splash.png 644 usr/share/evolution-artwork

@@ -1,10 +1,10 @@
 #!/bin/sh
 pkgname=neofetch
 version=7.1.0
-revision=3
+revision=4
 short_desc="Simple system information script (not my software)"
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
-homepage="https://github.com/evolution-linux/neofetch"
+homepage="https://gitlab.com/evolutionos/neofetch"
 license="MIT"
 makedepends="make git"
 depends="bash"
@@ -16,7 +16,7 @@ do_build() {
 
 do_install() {
     echo "Installing..."
-    git clone --depth=1 https://github.com/evolution-linux/neofetch
+    git clone --depth=1 https://gitlab.com/evolutionos/neofetch
     cd neofetch
     mkdir -p ${DESTDIR}/usr/
     make PREFIX=${DESTDIR}/usr/ install

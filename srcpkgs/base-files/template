@@ -1,13 +1,13 @@
 # Template file for 'base-files'
 pkgname=base-files
 version=0.143
-revision=5
+revision=6
 bootstrap=yes
 depends="xbps-triggers"
 short_desc="Evolution Linux base system files"
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 license="Public Domain"
-homepage="https://evolution-linux.github.io"
+homepage="https://evolutionos.gitlab.io"
 conf_files="
 	/etc/inputrc
 	/etc/profile

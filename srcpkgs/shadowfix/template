@@ -1,0 +1,16 @@
+pkgname=shadowfix
+version=1.0
+revision=0
+build_style=meta
+maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
+short_desc="Something that should only ever be installed ONCE."
+license="GPL-3.0"
+homepage="https://evolutionos.gitlab.io"
+
+do_install() {
+    #!/bin/bash
+
+    mkdir -p ${DESTDIR}/etc/
+
+    touch ${DESTDIR}/etc/shadow
+}

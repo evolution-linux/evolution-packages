@@ -1,11 +1,11 @@
 pkgname=evolution-desktop
 version=1.1
-revision=5
+revision=7
 build_style=meta
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 short_desc="Desktop and Greeter for EvolutionOS"
 license="GPL-3.0"
-homepage="https://evolution-linux.github.io"
+homepage="https://evolutionos.gitlab.io"
 depends="wayfire greetd wf-shell wcm mesa-dri elogind polkit mate-polkit greetd-gtkgreet gtkloadspinner dbus dconf nautilus alacritty pipewire wireplumber slurp grim alsa-pipewire gnome-system-monitor upower brightnessctl gnome-themes-extra dejavu-fonts-ttf xdg-desktop-portal-wlr xdg-desktop-portal-gtk swaylock swayidle wpa_supplicant wpa-cute evolution-theme-switcher"
 
 do_install() {

@@ -1,19 +1,19 @@
 #!/bin/sh
 pkgname=evolution-theme-switcher
 version=1.0
-revision=1
+revision=4
 short_desc="Just a theme switcher for evolution-desktop"
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
-homepage="https://github.com/Tracker-Friendly/Evolution-theme-switcher"
+homepage="https://gitlab.com/evolutionos/Evolution-theme-switcher"
 license="GPL-3.0"
-makedepends="make gcc git pkg-config gtk+3-devel dconf psmisc"
-depends="gtk+3 dconf psmisc"
+makedepends="make gcc git pkg-config gtk+3-devel dconf"
+depends="gtk+3 dconf"
 
 do_build() {
     echo "Building..."
     cd ${XBPS_BUILDDIR}
     rm -rf gtkgreet
-    git clone https://github.com/Tracker-Friendly/evolution-theme-switcher.git
+    git clone https://gitlab.com/evolutionos/evolution-theme-switcher.git
     cd evolution-theme-switcher
     make
 }

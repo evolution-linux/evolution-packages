@@ -1,0 +1,32 @@
+# Template file for 'busybox'
+pkgname=busybox-full
+version=1.35.0
+revision=0
+short_desc="Swiss Army Knife of Embedded Linux - Full (not my software)"
+maintainer="Johnathon Li <jliwin98@danwin1210.de>"
+license="GPL-2.0-only"
+homepage="https://www.busybox.net"
+makedepends="curl"
+conflicts="busybox>=0 busybox-huge>=0 busybox-core>=0"
+archs="x86_64-musl *-musl"
+
+_alternatives_core="
+ ash:ash:/usr/bin/busybox
+ awk:awk:/usr/bin/busybox
+ hostname:hostname:/usr/bin/busybox
+ sh:sh:/usr/bin/busybox
+ vi:vi:/usr/bin/busybox
+ logger:logger:/usr/bin/busybox"
+
+_alternatives="
+ ${_alternatives_core}
+ ntpd:ntpd:/usr/bin/busybox
+ ntpd:ntpd:/etc/sv/busybox-ntpd"
+
+alternatives="${_alternatives}"
+register_shell="/usr/bin/ash"
+
+do_install() {
+	curl -Lo busybox https://busybox.net/downloads/binaries/${version}-$(uname -m)-linux-${XBPS_TARGET_LIBC}/busybox
+	vbin busybox
+}

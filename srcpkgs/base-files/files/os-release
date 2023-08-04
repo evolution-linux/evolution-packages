@@ -1,8 +1,8 @@
 NAME="Evolution"
 ID="evolution"
 PRETTY_NAME="EvolutionOS"
-HOME_URL="https://evolution-linux.github.io"
-DOCUMENTATION_URL="https://evolution-linux.github.io/wiki/"
+HOME_URL="https://evolutionos.gitlab.io"
+DOCUMENTATION_URL="https://evolutionos.gitlab.io/wiki/"
 LOGO="evolution-logo"
 ANSI_COLOR="0;38;2;71;128;97"
 

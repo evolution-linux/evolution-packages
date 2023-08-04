@@ -1,14 +1,14 @@
 pkgname=evolution-patches
 version=1.0
-revision=5
+revision=8
 build_style=meta
 maintainer="Tracker-Friendly <jliwin98@danwin1210.de>"
 short_desc="Simple patches that enable an usable OS out of the box"
 license="GPL-3.0"
-homepage="https://evolution-linux.github.io"
+homepage="https://evolutionos.gitlab.io"
 makedepends="busybox-core opendoas"
-depends="busybox-core opendoas"
-replaces="grep which gzip tar diffutils coreutils findutils xz wget sed gawk"
+depends="busybox-core opendoas shadowfix"
+replaces="grep which gzip tar diffutils coreutils findutils xz wget sed gawk pciutils usbutils tree"
 provides="awk-0_1"
 
 do_install() {
@@ -16,7 +16,7 @@ do_install() {
 
     # Get the list of commands from busybox
 
-    commands="[ [[ arch ascii base32 base64 basename brctl cat chgrp chmod chown chroot comm cp crc32 cttyhack cut date dc dd df dirname dnsdomainname du dumpkmap echo ed env expand expr factor false fatattr fbset fold fsync fuser getty groups head hexedit i2cdetect i2cdump i2cget i2cset i2ctransfer id ifconfig ifenslave install iostat ipaddr iplink ipneigh iproute iprule iptunnel killall killall5 link ln loadkmap ls lsof lsscsi lzcat md5sum mkdir mkfifo mknod mkstat mv nc netstat nice nl nohup nproc nslookup od partprobe paste patch pipe_progress powertop printenv printf pstree pwd readlink realpath rm rmdir seq setfattr sha1sum sha256sum sha3sum sha512sum shred shuf sleep sort split ssl_client stat strings stty sum svok sync tac tail tee telnet test time touch tr true truncate ts tty uevent uname unexpand uniq unlink unxz unzip uudecode uuencode wc wget whoami whois xxd xz xzcat yes sh find diff gunzip tar gzip sed less which mktemp grep xargs"
+    commands="[ [[ arch ascii base32 base64 basename brctl cat chgrp chmod chown chroot comm cp crc32 cttyhack cut date dc dd df dirname dnsdomainname du dumpkmap echo ed env expand expr factor false fatattr fbset fold fsync fuser getty groups head hexedit i2cdetect i2cdump i2cget i2cset i2ctransfer id ifconfig ifenslave install iostat ipaddr iplink ipneigh iproute iprule iptunnel killall killall5 link ln loadkmap ls lsof lsscsi lzcat md5sum mkdir mkfifo mknod mkstat mv nc netstat nice nl nohup nproc nslookup od partprobe paste patch pipe_progress powertop printenv printf pstree pwd readlink realpath rm rmdir seq setfattr sha1sum sha256sum sha3sum sha512sum shred shuf sleep sort split ssl_client stat strings stty sum svok sync tac tail tee telnet test time touch tr true truncate ts tty uevent uname unexpand uniq unlink unxz unzip uudecode uuencode wc wget whoami whois xxd xz xzcat yes sh find diff gunzip tar gzip sed less which mktemp grep xargs cmp egrep fgrep lspci lsusb mpstat tree tsort zcat"
     mkdir -p ${DESTDIR}/usr/bin/
     # Loop through each command
     for cmd in $commands; do
@@ -38,6 +38,4 @@ do_install() {
     cp ${FILESDIR}/doas.conf ${DESTDIR}/etc/doas.conf    
 
     ln -sf /bin/doas ${DESTDIR}/usr/bin/sudo
-
-    touch ${DESTDIR}/etc/shadow
 }
